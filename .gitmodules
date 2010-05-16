@@ -7,3 +7,6 @@
 [submodule "contrib/scifihifi"]
 	path = contrib/scifihifi
 	url = git://github.com/ldandersen/scifihifi-iphone.git
+[submodule "contrib/SSCore"]
+	path = contrib/SSCore
+	url = git://github.com/amazingsyco/sscore.git

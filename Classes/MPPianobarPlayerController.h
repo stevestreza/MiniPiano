@@ -8,17 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "PPPianobarController.h"
+#import "MPStyleView.h"
 
 @interface MPPianobarPlayerController : UIViewController {
 	PPPianobarController *_pianobar;
 	
 	UIImageView *_imageView;
+	UIImage *_currentAlbumArt;
 	UISlider *_volumeSlider;
+	
+	MPStyleView *_controlsBackground;
 }
 
 @property (nonatomic, retain) PPPianobarController *pianobar;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
+@property (nonatomic, retain) IBOutlet MPStyleView *controlsBackground;
 
 -(IBAction)thumbsUp:(id)sender;
 -(IBAction)thumbsDown:(id)sender;

@@ -8,9 +8,11 @@
 
 #import "MPPianobarPlayerController.h"
 #import "PPTrack.h"
+#import "TCDownload.h"
 
 @interface MPPianobarPlayerController (Private)
 
++(UIImage *)noAlbumArtImage;
 -(void)updateView;
 
 @end
@@ -21,6 +23,15 @@
 @synthesize pianobar=_pianobar;
 @synthesize volumeSlider=_volumeSlider;
 @synthesize imageView=_imageView;
+@synthesize controlsBackground=_controlsBackground;
+
+static UIImage *sNoAlbumArtImage = nil;
++(UIImage *)noAlbumArtImage{
+	if(!sNoAlbumArtImage){
+		sNoAlbumArtImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"empty-art" ofType:@"png"]];
+	}
+	return sNoAlbumArtImage;
+}
 
 -(void)pianobarWillLogin:(PPPianobarController *)pianobar{
 	[self updateView];	
@@ -31,16 +42,30 @@
 }
 
 -(void)pianobar:(PPPianobarController *)pianobar didBeginPlayingSong:(PPTrack *)song{
-	[self updateView];	
-	NSLog(@"Fetching song URL: %@",[song url]);
+	[_currentAlbumArt release];
+	_currentAlbumArt = nil;
 	
+	[self updateView];	
+	
+	NSURL *url = [song url];
+	if([url isKindOfClass:[NSString class]]){
+		url = [NSURL URLWithString:(NSString *)url];
+	}
+	
+	NSLog(@"Fetching song URL: %@",url);
+	TCDownload *download = [[TCDownload alloc] initWithURL:url];
+	download.delegate = self;
+	[download send:YES];
+}
+
+-(void)downloadFinished:(TCDownload *)download{
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-		NSURL *url = [song url];
-		if([url isKindOfClass:[NSString class]]){
-			url = [NSURL URLWithString:(NSString *)url];
-		}
+		UIImage *image = [[[UIImage alloc] initWithData:[download data]] autorelease];
+
+		[_currentAlbumArt release];
+		_currentAlbumArt = [image retain];
 		
-		//TODO load the image
+		[self updateView];
 	}];
 }
 
@@ -64,6 +89,8 @@
 	
 	[self setTitle:nowPlaying.title];
 	_volumeSlider.value = self.pianobar.volume;
+	
+	_imageView.image = (_currentAlbumArt == nil ? [[self class] noAlbumArtImage] : _currentAlbumArt);
 }
 
 -(IBAction)thumbsUp:(id)sender{
@@ -106,10 +133,12 @@
 	}
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
 	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 	if([self becomeFirstResponder]){
 	}
+	
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -130,6 +159,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.controlsBackground.styleName = @"playerControlsBackground";
 	[self updateView];
 }
 
