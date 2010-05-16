@@ -32,6 +32,16 @@
 
 -(void)pianobar:(PPPianobarController *)pianobar didBeginPlayingSong:(PPTrack *)song{
 	[self updateView];	
+	NSLog(@"Fetching song URL: %@",[song url]);
+	
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		NSURL *url = [song url];
+		if([url isKindOfClass:[NSString class]]){
+			url = [NSURL URLWithString:(NSString *)url];
+		}
+		
+		//TODO load the image
+	}];
 }
 
 -(void)pianobar:(PPPianobarController *)pianobar didBeginPlayingChannel:(PPStation *)channel{
@@ -46,12 +56,14 @@
 	_pianobar = aPianobar;
 	
 	_pianobar.delegate = self;
+	[self updateView];
 }
 
 -(void)updateView{
 	PPTrack *nowPlaying = [self.pianobar nowPlaying];
 	
 	[self setTitle:nowPlaying.title];
+	_volumeSlider.value = self.pianobar.volume;
 }
 
 -(IBAction)thumbsUp:(id)sender{
@@ -71,7 +83,8 @@
 }
 
 -(IBAction)updateVolume:(id)sender{
-	
+	self.pianobar.volume = _volumeSlider.value;
+	[self updateView];
 }
 
 - (BOOL)canBecomeFirstResponder{
@@ -96,7 +109,6 @@
 -(void)viewDidAppear:(BOOL)animated{
 	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 	if([self becomeFirstResponder]){
-		NSLog(@"First!");
 	}
 }
 
@@ -118,6 +130,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self updateView];
 }
 
 

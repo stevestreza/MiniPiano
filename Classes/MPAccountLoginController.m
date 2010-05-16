@@ -8,6 +8,7 @@
 
 #import "MPAccountLoginController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AudioUnit/AudioUnit.h>
 
 @implementation MPAccountLoginController
 
@@ -89,10 +90,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.formView.opaque = NO;
 	self.formView.layer.cornerRadius = 10.;
 	self.formView.layer.shadowColor = [[UIColor blackColor] CGColor];
 	self.formView.layer.shadowOffset = CGSizeMake(0, 0);
 	self.formView.layer.shadowRadius = 5.;
+	self.formView.layer.shadowOpacity = 1.0;
 }
 
 

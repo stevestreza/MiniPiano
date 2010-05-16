@@ -279,8 +279,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				1EC2ED6F119FAD810059C56D /* QuartzCore.framework */,
-				1EC2EEFA11A063EC0059C56D /* Security.framework */,
 				1EC2F07711A078490059C56D /* MPAccountLogin.xib */,
 			);
 			name = CustomTemplate;
@@ -308,6 +306,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EC2ED6F119FAD810059C56D /* QuartzCore.framework */,
+				1EC2EEFA11A063EC0059C56D /* Security.framework */,
 				1EE43B05119FA05500D348DF /* AVFoundation.framework */,
 				1EE43B07119FA05500D348DF /* AudioToolbox.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
