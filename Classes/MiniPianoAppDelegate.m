@@ -61,6 +61,7 @@
 	}
 	
 #define DebugAccount(__username, __password) do{MPAccount *account = nil; account = [[[MPAccount alloc] initWithKeychainUsername:__username] autorelease]; if(!account){ account = [[[MPAccount alloc] initWithUsername:__username password:__password] autorelease]; } [accountPicker addAccount:account]; }while(0)
+	//DebugAccount(@"username@gmail.com", @"appleseed"); // use this to quickly add a debug account if it doesn't already exist
 	
     // Override point for customization after app launch    
     [window addSubview:navigationController.view];
