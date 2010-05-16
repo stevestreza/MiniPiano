@@ -15,28 +15,52 @@
 @synthesize volumeSlider=_volumeSlider;
 @synthesize imageView=_imageView;
 
--(void)updateView{
-	PPTrack *nowPlaying = [self.pianobar nowPlaying];
+-(void)pianobarWillLogin:(PPPianobarController *)pianobar{
+	[self updateView];	
 }
 
--(NSString *)title{
-	return self.pianobar.nowPlaying.title;
+-(void)pianobarDidLogin:(PPPianobarController *)pianobar{
+	[self updateView];	
+}
+
+-(void)pianobar:(PPPianobarController *)pianobar didBeginPlayingSong:(PPTrack *)song{
+	[self updateView];	
+}
+
+-(void)pianobar:(PPPianobarController *)pianobar didBeginPlayingChannel:(PPStation *)channel{
+	[self updateView];	
+}
+
+-(void)setPianobar:(PPPianobarController *)aPianobar{
+	_pianobar.delegate = nil;
+	
+	[aPianobar retain];
+	[_pianobar release];
+	_pianobar = aPianobar;
+	
+	_pianobar.delegate = self;
+}
+
+-(void)updateView{
+	PPTrack *nowPlaying = [self.pianobar nowPlaying];
+	
+	[self setTitle:nowPlaying.title];
 }
 
 -(IBAction)thumbsUp:(id)sender{
-	
+	[self.pianobar thumbsUpCurrentSong:sender];
 }
 
 -(IBAction)thumbsDown:(id)sender{
-	
+	[self.pianobar thumbsDownCurrentSong:sender];
 }
 
 -(IBAction)playPause:(id)sender{
-	
+	[self.pianobar playPauseCurrentSong:sender];
 }
 
 -(IBAction)nextSong:(id)sender{
-	
+	[self.pianobar playNextSong:sender];
 }
 
 -(IBAction)updateVolume:(id)sender{
@@ -87,10 +111,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	if([self.view nextResponder] == self){
-		NSLog(@"Awww yeah");
-	}
 }
 
 
