@@ -11,6 +11,44 @@
 
 @implementation MPAccountPickerController
 
+@synthesize accountSelectedHandler=_accountSelectedHandler;
+
+-(NSArray *)accounts{
+	if(!_accounts){
+		NSMutableArray *newAccounts = [NSMutableArray array];
+
+		NSArray *usernames = [[NSUserDefaults standardUserDefaults] arrayForKey:@"usernames"];
+		for(NSString *username in usernames){
+			MPAccount *account = [[[MPAccount alloc] initwithKeychainUsername:username] autorelease];
+			if(account){
+				[newAccounts addObject:account];
+			}
+		}
+		
+		_accounts = [newAccounts copy];
+	}
+	return _accounts;
+}
+
+-(void)addAccount:(MPAccount *)account{
+	if(!account) return;
+	
+	[self accounts];
+	NSArray *newAccounts = [_accounts arrayByAddingObject:account];
+	
+	[_accounts autorelease];
+	_accounts = [newAccounts retain];
+	
+	NSMutableArray *usernames = [NSMutableArray array];
+	for(MPAccount *account in _accounts){
+		[usernames addObject:[account username]];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setObject:usernames forKey:@"usernames"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[self.tableView reloadData];
+}
 
 #pragma mark -
 #pragma mark Initialization
@@ -74,15 +112,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return <#number of sections#>;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return <#number of rows in section#>;
+    return [[self accounts] count];
 }
 
+- (MPAccount *)accountAtIndexPath:(NSIndexPath *)indexPath{
+	NSArray *accounts = [self accounts];
+	if(indexPath.row < accounts.count){
+		return [accounts objectAtIndex:indexPath.row];
+	}else{
+		return nil;
+	}
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,6 +141,7 @@
     }
     
     // Configure the cell...
+	cell.textLabel.text = [[self accountAtIndexPath:indexPath] username];
     
     return cell;
 }
@@ -144,14 +191,8 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	MPAccount *account = [self accountAtIndexPath:indexPath];
+	self.accountSelectedHandler(account);
 }
 
 

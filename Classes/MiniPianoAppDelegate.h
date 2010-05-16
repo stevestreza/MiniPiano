@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PPPianobarController.h"
 
+#import "MPAccountPickerController.h"
+#import "MPStationPickerController.h"
+#import "MPPianobarPlayerController.h"
+
 @class MiniPianoViewController;
 
 @interface MiniPianoAppDelegate : NSObject <UIApplicationDelegate, PPPianobarDelegate> {
@@ -16,7 +20,11 @@
     MiniPianoViewController *viewController;
 	
 	UINavigationController *navigationController;
-	PPPianobarController *pianobar;
+
+	PPPianobarController *pianobar;	
+	MPAccountPickerController *accountPicker;
+	MPStationPickerController *stationPicker;
+	MPPianobarPlayerController *musicPlayer;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

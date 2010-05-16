@@ -11,8 +11,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "PPStation.h"
-#import "MPPianobarPlayerController.h"
-#import "MPStationPickerController.h"
 
 @implementation MiniPianoAppDelegate
 
@@ -21,16 +19,19 @@
 
 -(void)pianobarDidLogin:(PPPianobarController *)thePianobar{
 	NSLog(@"Login!");
-	MPStationPickerController *picker = [[MPStationPickerController alloc] init];
-	picker.pianobar = thePianobar;
-	picker.selectedStationHandler = ^(PPStation *station){
+
+	[stationPicker release];
+	stationPicker = [[MPStationPickerController alloc] init];
+	stationPicker.pianobar = thePianobar;
+	stationPicker.selectedStationHandler = ^(PPStation *station){
 		[thePianobar playStationWithID:[station stationID]];
 
-		MPPianobarPlayerController *player = [[MPPianobarPlayerController alloc] init];
-		player.pianobar = thePianobar;
-		[navigationController pushViewController:player animated:YES];
+		[musicPlayer release];
+		musicPlayer = [[MPPianobarPlayerController alloc] init];
+		musicPlayer.pianobar = thePianobar;
+		[navigationController pushViewController:musicPlayer animated:YES];
 	};
-	[navigationController pushViewController:picker animated:YES];
+	[navigationController pushViewController:stationPicker animated:YES];
 }
 
 -(void)pianobarWillLogin:(PPPianobarController *)pianobar{}
@@ -43,24 +44,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-	navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	
+	accountPicker = [[MPAccountPickerController alloc] init];
+	accountPicker.accountSelectedHandler = ^(MPAccount *account){
+		NSString *username = [account username];
+		NSString *password = [account password];
+		if(!username && !password) return;
+		
+		pianobar.delegate = nil;
+		[pianobar release];
+		
+		pianobar = [[PPPianobarController alloc] initWithUsername:username andPassword:password];
+		pianobar.delegate = self;
+		[pianobar login];
+	};
+	
+	navigationController = [[UINavigationController alloc] initWithRootViewController:accountPicker];
 	
     // Override point for customization after app launch    
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
-	
-	NSString *pandoraEmail = nil;
-	NSString *pandoraPassword = nil;
-	
-	if(pandoraEmail && pandoraPassword){
-		pianobar = [[PPPianobarController alloc] initWithUsername:pandoraEmail
-													  andPassword:pandoraPassword];
-		pianobar.delegate = self;
-		[pianobar login];
-	}else{
-		NSLog(@"Add your username/password!");
-	}
 	
 	return YES;
 }

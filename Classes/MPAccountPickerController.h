@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPAccount.h"
 
-typedef void (^MPAccountPickerHandler)(id account);
+typedef void (^MPAccountPickerHandler)(MPAccount *account);
 
 @interface MPAccountPickerController : UITableViewController {
-
+	NSArray *_accounts;
+	MPAccountPickerHandler _accountSelectedHandler;
 }
+@property (nonatomic, copy) MPAccountPickerHandler accountSelectedHandler;
 
+- (MPAccount *)accountAtIndexPath:(NSIndexPath *)indexPath;
 @end

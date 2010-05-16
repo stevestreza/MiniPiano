@@ -16,6 +16,10 @@
 		1EC2ED6C119FAD700059C56D /* libVillainousStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2ED65119FAD550059C56D /* libVillainousStyle.a */; };
 		1EC2ED70119FAD810059C56D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2ED6F119FAD810059C56D /* QuartzCore.framework */; };
 		1EC2EE7711A057CC0059C56D /* MPStationPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EE7611A057CC0059C56D /* MPStationPickerController.m */; };
+		1EC2EEDB11A05E7F0059C56D /* MPAccountPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EEDA11A05E7F0059C56D /* MPAccountPickerController.m */; };
+		1EC2EEEE11A060E70059C56D /* MPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EEED11A060E70059C56D /* MPAccount.m */; };
+		1EC2EEF311A062130059C56D /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EEF211A062130059C56D /* SFHFKeychainUtils.m */; };
+		1EC2EEFB11A063EC0059C56D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2EEFA11A063EC0059C56D /* Security.framework */; };
 		1EE43B06119FA05500D348DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B05119FA05500D348DF /* AVFoundation.framework */; };
 		1EE43B08119FA05500D348DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B07119FA05500D348DF /* AudioToolbox.framework */; };
 		1EE43B4E119FA0EE00D348DF /* libPianoBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43AF2119F9FE200D348DF /* libPianoBar.a */; };
@@ -133,6 +137,13 @@
 		1EC2ED6F119FAD810059C56D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1EC2EE7511A057CC0059C56D /* MPStationPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStationPickerController.h; sourceTree = "<group>"; };
 		1EC2EE7611A057CC0059C56D /* MPStationPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStationPickerController.m; sourceTree = "<group>"; };
+		1EC2EED911A05E7F0059C56D /* MPAccountPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAccountPickerController.h; sourceTree = "<group>"; };
+		1EC2EEDA11A05E7F0059C56D /* MPAccountPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAccountPickerController.m; sourceTree = "<group>"; };
+		1EC2EEEC11A060E70059C56D /* MPAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAccount.h; sourceTree = "<group>"; };
+		1EC2EEED11A060E70059C56D /* MPAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAccount.m; sourceTree = "<group>"; };
+		1EC2EEF111A062130059C56D /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = contrib/scifihifi/security/SFHFKeychainUtils.h; sourceTree = SOURCE_ROOT; };
+		1EC2EEF211A062130059C56D /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = contrib/scifihifi/security/SFHFKeychainUtils.m; sourceTree = SOURCE_ROOT; };
+		1EC2EEFA11A063EC0059C56D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1EE43B05119FA05500D348DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1EE43B07119FA05500D348DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +169,7 @@
 				1EE43B06119FA05500D348DF /* AVFoundation.framework in Frameworks */,
 				1EE43B08119FA05500D348DF /* AudioToolbox.framework in Frameworks */,
 				1EC2ED70119FAD810059C56D /* QuartzCore.framework in Frameworks */,
+				1EC2EEFB11A063EC0059C56D /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +179,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1EC2EE7411A057300059C56D /* Station Picker */,
+				1EC2EED811A05E680059C56D /* Account Picker */,
 				1EC2EE6F11A056B10059C56D /* Player */,
+				1EC2EE7411A057300059C56D /* Station Picker */,
+				1EC2EEF011A062000059C56D /* Utilities */,
 				1D3623240D0F684500981E51 /* MiniPianoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MiniPianoAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* MiniPianoViewController.h */,
@@ -214,6 +228,26 @@
 			name = "Station Picker";
 			sourceTree = "<group>";
 		};
+		1EC2EED811A05E680059C56D /* Account Picker */ = {
+			isa = PBXGroup;
+			children = (
+				1EC2EEEC11A060E70059C56D /* MPAccount.h */,
+				1EC2EEED11A060E70059C56D /* MPAccount.m */,
+				1EC2EED911A05E7F0059C56D /* MPAccountPickerController.h */,
+				1EC2EEDA11A05E7F0059C56D /* MPAccountPickerController.m */,
+			);
+			name = "Account Picker";
+			sourceTree = "<group>";
+		};
+		1EC2EEF011A062000059C56D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1EC2EEF111A062130059C56D /* SFHFKeychainUtils.h */,
+				1EC2EEF211A062130059C56D /* SFHFKeychainUtils.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		1EE43ADC119F9FE200D348DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +273,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				1EC2ED6F119FAD810059C56D /* QuartzCore.framework */,
+				1EC2EEFA11A063EC0059C56D /* Security.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -420,6 +455,9 @@
 				28D7ACF80DDB3853001CB0EB /* MiniPianoViewController.m in Sources */,
 				1EC2ED53119FACAD0059C56D /* MPPianobarPlayerController.m in Sources */,
 				1EC2EE7711A057CC0059C56D /* MPStationPickerController.m in Sources */,
+				1EC2EEDB11A05E7F0059C56D /* MPAccountPickerController.m in Sources */,
+				1EC2EEEE11A060E70059C56D /* MPAccount.m in Sources */,
+				1EC2EEF311A062130059C56D /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

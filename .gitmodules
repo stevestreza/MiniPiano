@@ -4,3 +4,6 @@
 [submodule "contrib/VillainousStyle"]
 	path = contrib/VillainousStyle
 	url = git://github.com/amazingsyco/VillainousStyle.git
+[submodule "contrib/scifihifi"]
+	path = contrib/scifihifi
+	url = git://github.com/ldandersen/scifihifi-iphone.git
