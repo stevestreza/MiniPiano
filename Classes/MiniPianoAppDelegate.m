@@ -47,19 +47,20 @@
 	
 	accountPicker = [[MPAccountPickerController alloc] init];
 	accountPicker.accountSelectedHandler = ^(MPAccount *account){
-		NSString *username = [account username];
-		NSString *password = [account password];
-		if(!username && !password) return;
-		
-		pianobar.delegate = nil;
-		[pianobar release];
-		
-		pianobar = [[PPPianobarController alloc] initWithUsername:username andPassword:password];
-		pianobar.delegate = self;
-		[pianobar login];
+		[self loginToAccount:account];
 	};
 	
 	navigationController = [[UINavigationController alloc] initWithRootViewController:accountPicker];
+	
+	NSString *lastUsername = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSelectedUsername"];
+	if(lastUsername){
+		MPAccount *account = [[[MPAccount alloc] initWithKeychainUsername:lastUsername] autorelease];
+		if(account){
+			[self loginToAccount:account];
+		}
+	}
+	
+#define DebugAccount(__username, __password) do{MPAccount *account = nil; account = [[[MPAccount alloc] initWithKeychainUsername:__username] autorelease]; if(!account){ account = [[[MPAccount alloc] initWithUsername:__username password:__password] autorelease]; } [accountPicker addAccount:account]; }while(0)
 	
     // Override point for customization after app launch    
     [window addSubview:navigationController.view];
@@ -68,6 +69,36 @@
 	return YES;
 }
 
+-(void)loginToAccount:(MPAccount *)account{
+	NSString *username = [account username];
+	NSString *password = [account password];
+	if(!username || !password) return;
+	
+	[selectedAccount autorelease];
+	selectedAccount = [account retain];
+	
+	pianobar.delegate = nil;
+	[pianobar release];
+	
+	pianobar = [[PPPianobarController alloc] initWithUsername:username andPassword:password];
+	pianobar.delegate = self;
+	if([pianobar login]){
+		[[NSUserDefaults standardUserDefaults] setObject:username forKey:@"lastSelectedUsername"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
+		NSLog(@"Saved last username %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"lastSelectedUsername"]);
+	}else{
+		NSLog(@"Could not login!");
+
+		[selectedAccount release];
+		selectedAccount = nil;
+
+		pianobar.delegate = nil;
+		[pianobar release];
+		pianobar = nil;
+	}
+}
+							   
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

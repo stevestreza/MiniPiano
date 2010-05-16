@@ -28,10 +28,10 @@
 -(id)initWithUsername:(NSString *)username password:(NSString *)password{
 #define FailIfFalse(__cond, __err) if(!(__cond)){ NSLog __err ; goto fail; }
 	NSError *err = nil;
-
+	
 	[SFHFKeychainUtils storeUsername:username andPassword:password
 					  forServiceName:kMPAccountServiceName
-					  updateExisting:YES
+					  updateExisting:NO
 							   error:&err];
 	FailIfFalse(err == nil, (@"Couldn't store keychain - %@",err));
 	
@@ -49,10 +49,14 @@ fail:
 	return nil;
 }
 
--(id)initwithKeychainUsername:(NSString *)username{
+-(id)initWithKeychainUsername:(NSString *)username{
 	NSError *err = nil;
-	NSString *password = [SFHFKeychainUtils getPasswordForUsername:_username andServiceName:kMPAccountServiceName error:&err];
-	return [self initWithUsername:username password:password];
+	NSString *password = [SFHFKeychainUtils getPasswordForUsername:username andServiceName:kMPAccountServiceName error:&err];
+	if(password){
+		return [self initWithUsername:username password:password];
+	}else{
+		return nil;
+	}
 }
 
 @end

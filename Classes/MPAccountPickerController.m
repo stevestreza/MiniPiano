@@ -13,13 +13,17 @@
 
 @synthesize accountSelectedHandler=_accountSelectedHandler;
 
+-(NSString *)title{
+	return @"Accounts";
+}
+
 -(NSArray *)accounts{
 	if(!_accounts){
 		NSMutableArray *newAccounts = [NSMutableArray array];
 
 		NSArray *usernames = [[NSUserDefaults standardUserDefaults] arrayForKey:@"usernames"];
 		for(NSString *username in usernames){
-			MPAccount *account = [[[MPAccount alloc] initwithKeychainUsername:username] autorelease];
+			MPAccount *account = [[[MPAccount alloc] initWithKeychainUsername:username] autorelease];
 			if(account){
 				[newAccounts addObject:account];
 			}

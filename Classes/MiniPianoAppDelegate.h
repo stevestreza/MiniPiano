@@ -13,6 +13,8 @@
 #import "MPStationPickerController.h"
 #import "MPPianobarPlayerController.h"
 
+#import "MPAccount.h"
+
 @class MiniPianoViewController;
 
 @interface MiniPianoAppDelegate : NSObject <UIApplicationDelegate, PPPianobarDelegate> {
@@ -20,6 +22,8 @@
     MiniPianoViewController *viewController;
 	
 	UINavigationController *navigationController;
+	
+	MPAccount *selectedAccount;
 
 	PPPianobarController *pianobar;	
 	MPAccountPickerController *accountPicker;
@@ -29,6 +33,8 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet MiniPianoViewController *viewController;
+
+-(void)loginToAccount:(MPAccount *)account;
 
 @end
 

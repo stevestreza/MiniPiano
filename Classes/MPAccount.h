@@ -17,6 +17,6 @@
 @property (nonatomic, readonly) NSString *password;
 
 -(id)initWithUsername:(NSString *)username password:(NSString *)password;
--(id)initwithKeychainUsername:(NSString *)username;
+-(id)initWithKeychainUsername:(NSString *)username;
 
 @end
