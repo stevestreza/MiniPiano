@@ -7,11 +7,43 @@
 //
 
 #import "MPAccountPickerController.h"
-
+#import "MPAccountLoginController.h"
 
 @implementation MPAccountPickerController
 
 @synthesize accountSelectedHandler=_accountSelectedHandler;
+
+-(void)createAccount:(id)sender{
+	MPAccountLoginController *login = [[MPAccountLoginController alloc] init];
+	login.view.frame = self.view.frame;
+	
+	UIWindow *loginWindow = [[UIWindow alloc] initWithFrame:[self.view window].frame];
+	loginWindow.alpha = 0.;
+	loginWindow.rootViewController = login;
+	[loginWindow makeKeyAndVisible];
+		
+	[UIView beginAnimations:@"MPAccountLogin" context:self];
+	loginWindow.alpha = 1.;
+	
+	[UIView commitAnimations];
+	
+	MPAccountLoginHandler loginHandler = ^(NSString *username, NSString *password){
+		MPAccount *account = [[[MPAccount alloc] initWithUsername:username password:password] autorelease];
+		if(account){
+			[self addAccount:account];
+
+			loginWindow.alpha = 0.;
+			[loginWindow release];
+			[login release];
+			
+			return YES;
+		}else{
+			return NO;
+		}
+	};
+	
+	login.loginHandler = loginHandler;	
+}
 
 -(NSString *)title{
 	return @"Accounts";
@@ -82,11 +114,15 @@
 }
 */
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+																						   target:self
+																						   action:@selector(createAccount:)] autorelease];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -102,13 +138,13 @@
     [super viewDidDisappear:animated];
 }
 */
-/*
+
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
+
 
 
 #pragma mark -

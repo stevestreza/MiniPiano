@@ -20,6 +20,8 @@
 		1EC2EEEE11A060E70059C56D /* MPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EEED11A060E70059C56D /* MPAccount.m */; };
 		1EC2EEF311A062130059C56D /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EEF211A062130059C56D /* SFHFKeychainUtils.m */; };
 		1EC2EEFB11A063EC0059C56D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2EEFA11A063EC0059C56D /* Security.framework */; };
+		1EC2F07811A078490059C56D /* MPAccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EC2F07711A078490059C56D /* MPAccountLogin.xib */; };
+		1EC2F07B11A0798A0059C56D /* MPAccountLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2F07A11A0798A0059C56D /* MPAccountLoginController.m */; };
 		1EE43B06119FA05500D348DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B05119FA05500D348DF /* AVFoundation.framework */; };
 		1EE43B08119FA05500D348DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B07119FA05500D348DF /* AudioToolbox.framework */; };
 		1EE43B4E119FA0EE00D348DF /* libPianoBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43AF2119F9FE200D348DF /* libPianoBar.a */; };
@@ -144,6 +146,9 @@
 		1EC2EEF111A062130059C56D /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = contrib/scifihifi/security/SFHFKeychainUtils.h; sourceTree = SOURCE_ROOT; };
 		1EC2EEF211A062130059C56D /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = contrib/scifihifi/security/SFHFKeychainUtils.m; sourceTree = SOURCE_ROOT; };
 		1EC2EEFA11A063EC0059C56D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1EC2F07711A078490059C56D /* MPAccountLogin.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPAccountLogin.xib; sourceTree = "<group>"; };
+		1EC2F07911A0798A0059C56D /* MPAccountLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAccountLoginController.h; sourceTree = "<group>"; };
+		1EC2F07A11A0798A0059C56D /* MPAccountLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAccountLoginController.m; sourceTree = "<group>"; };
 		1EE43B05119FA05500D348DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1EE43B07119FA05500D348DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,8 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				1EC2EED811A05E680059C56D /* Account Picker */,
-				1EC2EE6F11A056B10059C56D /* Player */,
 				1EC2EE7411A057300059C56D /* Station Picker */,
+				1EC2EE6F11A056B10059C56D /* Player */,
 				1EC2EEF011A062000059C56D /* Utilities */,
 				1D3623240D0F684500981E51 /* MiniPianoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MiniPianoAppDelegate.m */,
@@ -235,6 +240,8 @@
 				1EC2EEED11A060E70059C56D /* MPAccount.m */,
 				1EC2EED911A05E7F0059C56D /* MPAccountPickerController.h */,
 				1EC2EEDA11A05E7F0059C56D /* MPAccountPickerController.m */,
+				1EC2F07911A0798A0059C56D /* MPAccountLoginController.h */,
+				1EC2F07A11A0798A0059C56D /* MPAccountLoginController.m */,
 			);
 			name = "Account Picker";
 			sourceTree = "<group>";
@@ -274,6 +281,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				1EC2ED6F119FAD810059C56D /* QuartzCore.framework */,
 				1EC2EEFA11A063EC0059C56D /* Security.framework */,
+				1EC2F07711A078490059C56D /* MPAccountLogin.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -440,6 +448,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* MiniPianoViewController.xib in Resources */,
 				1EC2ED54119FACAD0059C56D /* MPPianobarPlayerController.xib in Resources */,
+				1EC2F07811A078490059C56D /* MPAccountLogin.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +467,7 @@
 				1EC2EEDB11A05E7F0059C56D /* MPAccountPickerController.m in Sources */,
 				1EC2EEEE11A060E70059C56D /* MPAccount.m in Sources */,
 				1EC2EEF311A062130059C56D /* SFHFKeychainUtils.m in Sources */,
+				1EC2F07B11A0798A0059C56D /* MPAccountLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
