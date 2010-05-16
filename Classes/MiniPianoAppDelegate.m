@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PPStation.h"
 #import "MPPianobarPlayerController.h"
+#import "MPStationPickerController.h"
 
 @implementation MiniPianoAppDelegate
 
@@ -20,24 +21,16 @@
 
 -(void)pianobarDidLogin:(PPPianobarController *)thePianobar{
 	NSLog(@"Login!");
-	
-	if([thePianobar loadStations]){
-		NSArray *stations = [thePianobar stations];
-		for(PPStation *station in stations){
-			NSLog(@"Station is named %@ -   %@",[station name], station);
-			
-			if([[station name] rangeOfString:@"ubstep"].location != NSNotFound){
-				[thePianobar playStationWithID:[station stationID]];
-			}
-		}
-		
+	MPStationPickerController *picker = [[MPStationPickerController alloc] init];
+	picker.pianobar = thePianobar;
+	picker.selectedStationHandler = ^(PPStation *station){
+		[thePianobar playStationWithID:[station stationID]];
+
 		MPPianobarPlayerController *player = [[MPPianobarPlayerController alloc] init];
 		player.pianobar = thePianobar;
-		
 		[navigationController pushViewController:player animated:YES];
-	}else{
-		NSLog(@"Couldn't load stations");
-	}
+	};
+	[navigationController pushViewController:picker animated:YES];
 }
 
 -(void)pianobarWillLogin:(PPPianobarController *)pianobar{}
@@ -65,6 +58,8 @@
 													  andPassword:pandoraPassword];
 		pianobar.delegate = self;
 		[pianobar login];
+	}else{
+		NSLog(@"Add your username/password!");
 	}
 	
 	return YES;

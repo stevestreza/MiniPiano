@@ -9,6 +9,13 @@
 #import "MPPianobarPlayerController.h"
 #import "PPTrack.h"
 
+@interface MPPianobarPlayerController (Private)
+
+-(void)updateView;
+
+@end
+
+
 @implementation MPPianobarPlayerController
 
 @synthesize pianobar=_pianobar;

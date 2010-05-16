@@ -15,6 +15,7 @@
 		1EC2ED54119FACAD0059C56D /* MPPianobarPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EC2ED52119FACAD0059C56D /* MPPianobarPlayerController.xib */; };
 		1EC2ED6C119FAD700059C56D /* libVillainousStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2ED65119FAD550059C56D /* libVillainousStyle.a */; };
 		1EC2ED70119FAD810059C56D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC2ED6F119FAD810059C56D /* QuartzCore.framework */; };
+		1EC2EE7711A057CC0059C56D /* MPStationPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2EE7611A057CC0059C56D /* MPStationPickerController.m */; };
 		1EE43B06119FA05500D348DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B05119FA05500D348DF /* AVFoundation.framework */; };
 		1EE43B08119FA05500D348DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43B07119FA05500D348DF /* AudioToolbox.framework */; };
 		1EE43B4E119FA0EE00D348DF /* libPianoBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE43AF2119F9FE200D348DF /* libPianoBar.a */; };
@@ -29,35 +30,35 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1E0FDD5B101A79DF007AFA92 /* VillainousStyle.framework */;
+			remoteGlobalIDString = 1E0FDD5B101A79DF007AFA92;
 			remoteInfo = VillainousStyle.framework;
 		};
 		1EC2ED64119FAD550059C56D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1E3123CB10AD256C00D72994 /* libVillainousStyle.a */;
+			remoteGlobalIDString = 1E3123CB10AD256C00D72994;
 			remoteInfo = "libVillainousStyle.a - iPhone";
 		};
 		1EC2ED66119FAD550059C56D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1E5CFFBA10ED61E600B7B095 /* libVillainousStyle.a */;
+			remoteGlobalIDString = 1E5CFFBA10ED61E600B7B095;
 			remoteInfo = "libVillainousStyle.a - Mac";
 		};
 		1EC2ED68119FAD620059C56D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1E2370F010CB6A4100A03525 /* Headers */;
+			remoteGlobalIDString = 1E2370F010CB6A4100A03525;
 			remoteInfo = Headers;
 		};
 		1EC2ED6A119FAD620059C56D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1E3123CA10AD256C00D72994 /* libVillainousStyle.a - iPhone */;
+			remoteGlobalIDString = 1E3123CA10AD256C00D72994;
 			remoteInfo = "libVillainousStyle.a - iPhone";
 		};
 		1EE43AE5119F9FE200D348DF /* PBXContainerItemProxy */ = {
@@ -130,6 +131,8 @@
 		1EC2ED52119FACAD0059C56D /* MPPianobarPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPPianobarPlayerController.xib; sourceTree = "<group>"; };
 		1EC2ED56119FAD550059C56D /* VillainousStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillainousStyle.xcodeproj; path = contrib/VillainousStyle/Source/VillainousStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		1EC2ED6F119FAD810059C56D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1EC2EE7511A057CC0059C56D /* MPStationPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStationPickerController.h; sourceTree = "<group>"; };
+		1EC2EE7611A057CC0059C56D /* MPStationPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStationPickerController.m; sourceTree = "<group>"; };
 		1EE43B05119FA05500D348DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1EE43B07119FA05500D348DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,13 +167,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1EC2EE7411A057300059C56D /* Station Picker */,
+				1EC2EE6F11A056B10059C56D /* Player */,
 				1D3623240D0F684500981E51 /* MiniPianoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MiniPianoAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* MiniPianoViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* MiniPianoViewController.m */,
-				1EC2ED50119FACAD0059C56D /* MPPianobarPlayerController.h */,
-				1EC2ED51119FACAD0059C56D /* MPPianobarPlayerController.m */,
-				1EC2ED52119FACAD0059C56D /* MPPianobarPlayerController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -191,6 +193,25 @@
 				1EC2ED67119FAD550059C56D /* libVillainousStyle.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1EC2EE6F11A056B10059C56D /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				1EC2ED50119FACAD0059C56D /* MPPianobarPlayerController.h */,
+				1EC2ED51119FACAD0059C56D /* MPPianobarPlayerController.m */,
+				1EC2ED52119FACAD0059C56D /* MPPianobarPlayerController.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		1EC2EE7411A057300059C56D /* Station Picker */ = {
+			isa = PBXGroup;
+			children = (
+				1EC2EE7511A057CC0059C56D /* MPStationPickerController.h */,
+				1EC2EE7611A057CC0059C56D /* MPStationPickerController.m */,
+			);
+			name = "Station Picker";
 			sourceTree = "<group>";
 		};
 		1EE43ADC119F9FE200D348DF /* Products */ = {
@@ -398,6 +419,7 @@
 				1D3623260D0F684500981E51 /* MiniPianoAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* MiniPianoViewController.m in Sources */,
 				1EC2ED53119FACAD0059C56D /* MPPianobarPlayerController.m in Sources */,
+				1EC2EE7711A057CC0059C56D /* MPStationPickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
