@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPPianobarController.h"
 
 @class MiniPianoViewController;
 
-@interface MiniPianoAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MiniPianoAppDelegate : NSObject <UIApplicationDelegate, PPPianobarDelegate> {
     UIWindow *window;
     MiniPianoViewController *viewController;
+	
+	UINavigationController *navigationController;
+	PPPianobarController *pianobar;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
